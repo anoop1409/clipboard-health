@@ -23,7 +23,7 @@ Add a new column `custom_agent_id` to the `Agents` table.
 #### Details:
 In order to include a custom agent id in the Facilities report, we should first save it in a new database column. Please use this ticket to create a new column in the `Agents` table. Below are the implementation details:
 
-- The column should be a varchar field with max_length = 255 chars.
+- The column should be a `varchar` field with max_length = 255 chars.
 - The column should be `unique` and `indexed` for faster searching.
 - It should be a `nullable` field as there are existing rows and the field is optional.
 - The column should accept only alphabets, numbers and underscore.
@@ -44,7 +44,7 @@ In order to include a custom agent id in the Facilities report, we should first 
 
 
 ### Ticket 2:
-Add a new text field in the Agent creation/edit form to enter or update the `custom_agent_id` value.
+Add a new text field in the Agent creation and edit form to enter or update the `custom_agent_id` value.
 
 #### Details:
 Create a new field `Custom agent id` that takes the input from the user while creating a new agent or while editing an existing agent.
@@ -75,14 +75,14 @@ Update the backend to accept and return the additional field `custom_agent_id` i
 #### Details:
 The frontend will send the value for the newly introduced field - `custom_agent_id` going forwards. The backend system should be updated accordingly to accept the newly introduced field in the request payload and also to provide the value of this field in the response payload where required.
 
-- Accept the `custom_agent_id` property in both the `POST` and `PATCH` endpoints for the `Agent` model.
+- Accept the `custom_agent_id` property in both the `POST` and `PUT` endpoints for the `Agent` model.
 - Update the `generateReport` method to return the `custom_agent_id` as part of the response.
 - Update the Serializer to mark this change.
 - Update the tests
 - Add new tests to cover the change
 
 #### Acceptance criteria:
-- `custom_agent_id` is accepted and saved by both the `POST` and `PATCH` endpoints of the `Agent` model.
+- `custom_agent_id` is accepted and saved by both the `POST` and `PUT` endpoints of the `Agent` model.
 - `generateReport` method returns the `custom_agent_id` along with the rest of the data.
 - The API endpoint - `/report` returns the `custom_agent_id` field and the corresponding value from the database.
 
